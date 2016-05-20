@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scene1.unity
+- path: C:/Users/AR/Downloads/RAIN_StarterKit_20150427/StarterKit/Assets/Movement.unity
   isLoaded: 1
   isActive: 1
