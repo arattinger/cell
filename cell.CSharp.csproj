@@ -63,11 +63,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\EnemyMovement.cs" />
+    <Compile Include="Assets\Scripts\EnemyMovement.cs" />
     <Compile Include="Assets\SpriteTile\SpriteTileDemo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\BackgroundShader.shader" />
+    <None Include="Assets\SpriteTile\BackgroundShader.shader" />
     <None Include="Assets\SpriteTile\SpriteTileShader.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
