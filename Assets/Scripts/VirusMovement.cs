@@ -9,7 +9,7 @@ public class VirusMovement : MonoBehaviour {
 	// Use this for initialization
     void Awake()
     {
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        target = GameObject.FindGameObjectWithTag("Nucleus").transform;
         nav = GetComponent<NavMeshAgent>();
 
     }
