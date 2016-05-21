@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyMovement : MonoBehaviour {
+public class VirusMovement : MonoBehaviour {
 
     Transform target;
     NavMeshAgent nav;
