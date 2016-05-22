@@ -5,8 +5,7 @@ public class GameManager : MonoBehaviour {
 
     int energy;
     public static GameManager instance = null;
-
-    public GameObject selection = null;
+    public Texture2D cursorTexture;
 
     void Awake() {
         if (instance == null)
@@ -21,6 +20,8 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+            
+        Cursor.SetCursor(cursorTexture, Vector2.zero,  CursorMode.ForceSoftware);
         energy = 100;
 	}
 	
