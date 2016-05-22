@@ -16,11 +16,17 @@ public class MouseManager : MonoBehaviour {
 
             if(Input.GetMouseButtonDown(0))
             {
-                Debug.Log("Test 2", ourHitObject);
-                Debug.Log(ourHitObject.tag);
+                //Debug.Log("Test 2", ourHitObject);
+                //Debug.Log(ourHitObject.tag);
+
+                
+                //SpriteRenderer spr = ourHitObject.GetComponentInChildren<SpriteRenderer>();
+                //SpriteRenderer spr = ourHitObject.GetComponent<SpriteRenderer>();
+                //spr.color = Color.red;
+                
                 if (ourHitObject.tag == "Cell") {
-                    
-                    HitCell(ourHitObject);
+                    HitCell(ourHitObject, Input.mousePosition);
+                    //HitCell(ourHitObject, hitInfo.collider.transform);
                 } else if(ourHitObject.tag == "Unit") {
                     HitPlayer(ourHitObject);
                 }
@@ -29,8 +35,8 @@ public class MouseManager : MonoBehaviour {
         }
 	}
 
-    void HitCell(GameObject hitObject) {
-        Debug.Log("Hit cell");
+    void HitCell(GameObject hitObject, Vector3 pos) {
+        //Debug.Log("Hit cell");
         /*MeshRenderer mr = hitObject.GetComponentInChildren<MeshRenderer>();
         if (mr.material.color == Color.red)
         {
@@ -40,10 +46,12 @@ public class MouseManager : MonoBehaviour {
         {
             mr.material.color = Color.red;
         }*/
-
+        Debug.Log("New Destination:");
+        Debug.Log(Camera.main.ScreenToWorldPoint(pos));
         if (selectedPlayer != null)
         {
-            selectedPlayer.destination = hitObject.transform.position;
+            selectedPlayer.SetDestination(Camera.main.ScreenToWorldPoint(pos));
+            //selectedPlayer.destination = hitObject.transform.position;
         }
     }
 
