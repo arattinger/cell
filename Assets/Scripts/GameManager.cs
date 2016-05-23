@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour {
             healthBars.Add(child.gameObject);
 
         }
-        Debug.Log("No of healthbars" + healthBars.Count.ToString());
+        //Debug.Log("No of healthbars" + healthBars.Count.ToString());
     }
 	
 	// Update is called once per frame
