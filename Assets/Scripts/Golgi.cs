@@ -8,6 +8,7 @@ public class Golgi : MonoBehaviour {
     public static Golgi instance = null;
     public GameObject unit;
     public GameObject unitParent;
+    int unitEnergyCost = 10;
 
     void Awake()
     {
@@ -33,6 +34,12 @@ public class Golgi : MonoBehaviour {
 
     public void CreateUnit(Vector3 pos)
     {
+        if(!GameManager.instance.GetEnergy(unitEnergyCost))
+        {
+            // TODO: Add Error Message, not enough energy available
+            return;
+        }
+
         Debug.Log("Create Unit");
         
         GameObject newUnit = Instantiate(unit);
@@ -45,5 +52,6 @@ public class Golgi : MonoBehaviour {
             unitPos.y, 
             unitPos.z + Random.Range(-range, range));
         units.Add(newUnit);
+        
     }
 }

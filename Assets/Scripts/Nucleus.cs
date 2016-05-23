@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Nucleus : MonoBehaviour {
 
-    int health = 100;
+    
 
 	// Use this for initialization
 	void Start () {
@@ -14,4 +14,5 @@ public class Nucleus : MonoBehaviour {
 	void Update () {
 	
 	}
+
 }
