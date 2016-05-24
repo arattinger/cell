@@ -3,35 +3,45 @@ using System.Collections;
 
 public class VirusMovement : MonoBehaviour {
 
-    Transform target;
-    GameObject gameTarget;
+    public Vector3 target;
+    public GameObject gameTarget;
     NavMeshAgent nav;
     int attackDamage = 10;
     int attackFrequency = 2;
     float timer = 0f;
+    public int id;
 
 	// Use this for initialization
     void Awake()
     {
-        target = GameObject.FindGameObjectWithTag("Nucleus").transform;
-        nav = GetComponent<NavMeshAgent>();
+        
     }
 
 	void Start () {
-	}
-	
-	// Update is called once per frame
-	void Update () { 
-        nav.SetDestination(target.position);
+        //target = GameObject.FindGameObjectWithTag("Nucleus").transform;
+        //target = gameTarget.transform.position;
+        nav = GetComponent<NavMeshAgent>();
+    }
 
-        timer += Time.deltaTime;
-        if (timer > attackFrequency && nav.remainingDistance < 0.1f)
+    // Update is called once per frame
+    void Update () {
+        if (target != null)
         {
-            Attack();
-            timer = 0;
+            nav.SetDestination(target);
+            //Debug.Log(nav.remainingDistance);
+            //Debug.Log(gameTarget.transform.position);
         }
-        //Debug.Log(nav.remainingDistance);
-	}
+        //timer += Time.deltaTime;
+        //if (timer > attackFrequency && nav.remainingDistance < 0.1f)
+        //{
+        //    //Attack();
+        //    Debug.Log(id + ": ");
+        //    Debug.Log(nav.remainingDistance);
+
+        //    timer = 0;
+        //}
+
+    }
 
     void Attack() {
         GameManager.instance.NucleusTakeDamage(attackDamage);

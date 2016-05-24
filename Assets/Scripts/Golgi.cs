@@ -5,22 +5,22 @@ using System.Collections.Generic;
 public class Golgi : MonoBehaviour {
 
     public List<GameObject> units = new List<GameObject>();
-    public static Golgi instance = null;
+    //public static Golgi instance = null;
     public GameObject unit;
     public GameObject unitParent;
     int unitEnergyCost = 10;
 
     void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else if (instance != this)
-        {
-            Destroy(gameObject);
-        }
-        DontDestroyOnLoad(gameObject);
+        //if (instance == null)
+        //{
+        //    instance = this;
+        //}
+        //else if (instance != this)
+        //{
+        //    Destroy(gameObject);
+        //}
+        //DontDestroyOnLoad(gameObject);
     }
     // Use this for initialization
     void Start () {
