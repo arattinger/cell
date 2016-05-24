@@ -17,10 +17,11 @@ public class GameManager : MonoBehaviour {
 
 
     // Used for virus spawn behaviour
+    public List<GameObject> viruses = new List<GameObject>();
     public GameObject virus;
     public GameObject virusParent;
     float timer = 0f;
-    float spawnTime = 3f;
+    float spawnTime = 7f;
     public bool spawning = true;
     public int maxViruses = 5;
     public int noViruses = 0;
@@ -48,7 +49,7 @@ public class GameManager : MonoBehaviour {
 
         }
         //Debug.Log("No of healthbars" + healthBars.Count.ToString());
-        //SpawnVirus();
+        SpawnVirus();
     }
 
     // Update is called once per frame
@@ -80,16 +81,10 @@ public class GameManager : MonoBehaviour {
         GameObject newVirus = Instantiate(virus);
         newVirus.transform.position = pos;
         newVirus.transform.parent = virusParent.transform;
-        //Vector3 unitPos = nucleus.transform.position;
-        //float range = 0.7f;
-        //unitPos = new Vector3(
-        //    unitPos.x + Random.Range(-range, range),
-        //    unitPos.y,
-        //    unitPos.z + Random.Range(-range, range));
 
         noViruses += 1;
-        Debug.Log(noViruses);
-        //newVirus.GetComponent<VirusMovement>().target = unitPos;
+        //Debug.Log(noViruses);
+        viruses.Add(newVirus);
     }
 
     public bool GetEnergy(int amount)

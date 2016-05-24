@@ -8,17 +8,20 @@ public class Unit : MonoBehaviour
     NavMeshAgent nav;
     Transform target;
     GameObject outline;
+    float aggressionRange = 1f;
+    GameObject attackTarget;
+
+    int attackDamage = 10;
+    int attackFrequency = 3;
+    float timer = 0f;
+
+    public enum mode { Controlled, Following, Attacking };
+    mode currentMode = mode.Controlled;
 
     void Awake()
     {
         nav = GetComponent<NavMeshAgent>();
-        //outline = transform.Find("Outline").gameObject;
-        //Debug.Log(outline);
         outline = transform.GetChild(0).GetChild(0).gameObject;
-        //foreach (Transform child in transform)
-        //{
-        //    Debug.Log(child.gameObject.name);
-        //}
     }
 
     // Use this for initialization
@@ -41,13 +44,33 @@ public class Unit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        nav.SetDestination(destination);
-        //Debug.Log(destination);
-        //Vector3 dir = destination - transform.position;
-        //Vector3 velocity = dir.normalized * speed * Time.deltaTime;
+        foreach(GameObject virus in GameManager.instance.viruses)
+        {
+            //Debug.Log("Distance from virus:" + (virus.transform.position - transform.position).sqrMagnitude.ToString());
+            if ((virus.transform.position - transform.position).sqrMagnitude < aggressionRange)
+            {
+                currentMode = mode.Attacking;
+                attackTarget = virus;
+            }
+        }
 
-        ////velocity = Vector3.ClampMagnitude(velocity, dir.magnitude);
-        //transform.Translate(velocity);
+        if(currentMode == mode.Controlled)
+        {
+            nav.SetDestination(destination);
+        } else if(currentMode == mode.Attacking)
+        {
+            if(attackTarget && !attackTarget.GetComponent<VirusMovement>().TakeDamage(attackDamage))
+            {
+                // Virus has zero health, destroy it
+                Destroy(attackTarget);
+                GameManager.instance.viruses.Remove(attackTarget);
+                attackTarget = null;
+
+                // Destroy the lysosome as well when the virus is defeated
+                Destroy(gameObject);
+            }
+        }
+
     }
 
 }

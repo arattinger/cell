@@ -9,9 +9,10 @@ public class VirusMovement : MonoBehaviour {
     int attackDamage = 10;
     int attackFrequency = 2;
     float timer = 0f;
-    public int id;
 
-	// Use this for initialization
+    int health = 100;
+
+    // Use this for initialization
     void Awake()
     {
         
@@ -31,15 +32,15 @@ public class VirusMovement : MonoBehaviour {
             //Debug.Log(nav.remainingDistance);
             //Debug.Log(gameTarget.transform.position);
         }
-        //timer += Time.deltaTime;
-        //if (timer > attackFrequency && nav.remainingDistance < 0.1f)
-        //{
-        //    //Attack();
-        //    Debug.Log(id + ": ");
-        //    Debug.Log(nav.remainingDistance);
+        timer += Time.deltaTime;
+        if (timer > attackFrequency && nav.remainingDistance < 0.1f)
+        {
+            Attack();
+            //Debug.Log(id + ": ");
+            //Debug.Log(nav.remainingDistance);
 
-        //    timer = 0;
-        //}
+            timer = 0;
+        }
 
     }
 
@@ -47,4 +48,14 @@ public class VirusMovement : MonoBehaviour {
         GameManager.instance.NucleusTakeDamage(attackDamage);
     }
 
+    public bool TakeDamage(int amount)
+    {
+        health -= amount;
+        if(health <= 0)
+        {
+            //Destroy(gameObject);
+            return false;
+        }
+        return true;
+    }
 }
