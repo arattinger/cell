@@ -67,7 +67,7 @@ public class Unit : MonoBehaviour
                 attackTarget = null;
 
                 // Destroy the lysosome as well when the virus is defeated
-                Destroy(gameObject);
+                // Destroy(gameObject);
             }
         }
 

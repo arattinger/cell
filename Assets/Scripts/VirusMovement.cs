@@ -29,15 +29,16 @@ public class VirusMovement : MonoBehaviour {
         if (target != null)
         {
             nav.SetDestination(target);
-            //Debug.Log(nav.remainingDistance);
+            Debug.Log(nav.remainingDistance);
+			Debug.Log(nav.pathStatus);
             //Debug.Log(gameTarget.transform.position);
         }
-        timer += Time.deltaTime;
-        if (timer > attackFrequency && nav.remainingDistance < 0.1f)
+        timer += Time.deltaTime;	
+		if (timer > attackFrequency && nav.pathStatus == NavMeshPathStatus.PathComplete && nav.remainingDistance < 0.1f)
         {
             Attack();
             //Debug.Log(id + ": ");
-            //Debug.Log(nav.remainingDistance);
+            Debug.Log(nav.remainingDistance);
 
             timer = 0;
         }
