@@ -21,11 +21,18 @@ public class GameManager : MonoBehaviour {
     public GameObject virus;
     public GameObject virusParent;
     float timer = 0f;
-    float spawnTime = 7f;
+    public float spawnTime = 1f;
     public bool spawning = true;
     public int maxViruses = 5;
     public int noViruses = 0;
     public GameObject spawnArea;  // Not implemented yet
+
+	// Used to handle gates
+	public GameObject gateParentLeft;
+	public GameObject gateParentRight;
+	public List<GameObject> gates = new List<GameObject>();
+	public List<GameObject> leftGates = new List<GameObject>();
+	public List<GameObject> rightGates = new List<GameObject>();
 
     void Awake() {
         if (instance == null)
@@ -48,6 +55,16 @@ public class GameManager : MonoBehaviour {
             healthBars.Add(child.gameObject);
 
         }
+
+		foreach (Transform child in gateParentLeft.transform) {
+			gates.Add (child.gameObject);
+			leftGates.Add (child.gameObject);
+		}
+		foreach (Transform child in gateParentRight.transform) {
+			gates.Add (child.gameObject);
+			rightGates.Add (child.gameObject);
+		}
+
         //Debug.Log("No of healthbars" + healthBars.Count.ToString());
         SpawnVirus();
     }
@@ -72,15 +89,34 @@ public class GameManager : MonoBehaviour {
         //    Random.Range(spawnArea.transform.position.x, spawnArea.transform.position.x + spawnArea.transform.localScale.x),
         //    Random.Range(spawnArea.transform.position.y, spawnArea.transform.position.x + spawnArea.transform.localScale.y),
         //    Random.Range(spawnArea.transform.position.z, spawnArea.transform.position.x + spawnArea.transform.localScale.z));
+		
+		Vector3[] pos = new [] {
+			new Vector3(
+				Random.Range(-1.5f, -9.5f),
+				Random.Range(3f, 3f),
+				Random.Range(-1.5f, -5f)),
+			new Vector3(
+				Random.Range(-1.5f, -9.5f),
+				Random.Range(3f, 3f),
+				Random.Range(-16f, -20f))
+		};
+			
+		//Debug.Log (pos[1]);
+		int spawnIndex = Random.Range (0, 2);
+		//Debug.Log (spawnIndex);
+		//int spawnIndex = 1;
 
-        Vector3 pos = new Vector3(
-            Random.Range(-1.5f, -9.5f),
-            Random.Range(3f, 3f),
-            Random.Range(-1.5f, -5f));
-
-        GameObject newVirus = Instantiate(virus);
-        newVirus.transform.position = pos;
+		GameObject newVirus = (GameObject) Instantiate(virus, pos[spawnIndex], virus.transform.rotation);
+		//newVirus.transform.position = pos[spawnIndex];
         newVirus.transform.parent = virusParent.transform;
+
+		if (spawnIndex == 0) {
+			int targetIndex = Random.Range (0, leftGates.Count);
+			newVirus.GetComponent<VirusMovement> ().SetTarget (leftGates [targetIndex]);
+		} else {
+			int targetIndex = Random.Range (0, rightGates.Count);
+			newVirus.GetComponent<VirusMovement> ().SetTarget (rightGates [targetIndex]);
+		}
 
         noViruses += 1;
         //Debug.Log(noViruses);
