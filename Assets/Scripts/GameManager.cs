@@ -5,6 +5,11 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour {
 
+	public float levelStartDelay = 2f;
+	private Text levelText;
+	private GameObject levelImage;
+	private int level = 1;
+
     public int energy;
     int maxHealth = 100;
     int health = 100;

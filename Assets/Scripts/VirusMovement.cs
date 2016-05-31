@@ -123,6 +123,7 @@ public class VirusMovement : MonoBehaviour {
 					MouseManager.instance.selectedPlayers.Remove (attackTarget.GetComponent<Unit>());
 					Destroy (attackTarget);
 					currentMode = mode.Moving;
+					nav.Resume ();
 					attackTarget = null;
 				}
 			}

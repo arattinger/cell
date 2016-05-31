@@ -1,10 +1,11 @@
 fileFormatVersion: 2
 guid: 46a778ce2d04dd24cbefe017ca715eb2
-timeCreated: 1463845085
+timeCreated: 1464700156
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: spaceship1
+    21300002: shot
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -73,6 +74,17 @@ TextureImporter:
         - {x: 52, y: -7.7563477}
         - {x: 52, y: 8.243652}
         - {x: 19, y: 27.243652}
+    - name: shot
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 854
+        width: 9
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     outline: []
   spritePackingTag: 
   userData: 
