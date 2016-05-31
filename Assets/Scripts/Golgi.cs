@@ -52,6 +52,6 @@ public class Golgi : MonoBehaviour {
             unitPos.y, 
             unitPos.z + Random.Range(-range, range));
         units.Add(newUnit);
-        
+		GameManager.instance.spaceships.Add (newUnit);
     }
 }

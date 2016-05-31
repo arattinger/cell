@@ -12,7 +12,7 @@ public class Unit : MonoBehaviour
     GameObject attackTarget;
 
     int attackDamage = 10;
-    int attackFrequency = 3;
+    int attackFrequency = 1;
     float timer = 0f;
 
     public enum mode { Controlled, Following, Attacking };
@@ -59,7 +59,8 @@ public class Unit : MonoBehaviour
             nav.SetDestination(destination);
         } else if(currentMode == mode.Attacking)
         {
-            if(attackTarget && !attackTarget.GetComponent<VirusMovement>().TakeDamage(attackDamage))
+			timer += Time.deltaTime;
+			if(timer > attackFrequency && attackTarget && !attackTarget.GetComponent<VirusMovement>().TakeDamage(attackDamage))
             {
                 // Virus has zero health, destroy it
                 Destroy(attackTarget);
@@ -68,6 +69,7 @@ public class Unit : MonoBehaviour
 
                 // Destroy the lysosome as well when the virus is defeated
                 // Destroy(gameObject);
+				timer = 0;
             }
         }
 

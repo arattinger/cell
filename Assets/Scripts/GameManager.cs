@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour {
     List<GameObject> healthBars = new List<GameObject>();
     public GameObject nucleus;
 
+	public List<GameObject> spaceships = new List<GameObject>();
 
     // Used for virus spawn behaviour
     public List<GameObject> viruses = new List<GameObject>();

@@ -9,6 +9,7 @@ public class VirusMovement : MonoBehaviour {
     int attackDamage = 10;
     int attackFrequency = 1;
     float timer = 0f;
+	float aggressionRange = 1f;
 
     int health = 100;
 
@@ -37,6 +38,16 @@ public class VirusMovement : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+
+		foreach(GameObject spaceship in GameManager.instance.spaceships)
+		{
+			//Debug.Log("Distance from virus:" + (virus.transform.position - transform.position).sqrMagnitude.ToString());
+			if ((spaceship.transform.position - transform.position).sqrMagnitude < aggressionRange)
+			{
+				currentMode = mode.Fighting;
+//				attackTarget = virus;
+			}
+		}
 
 		if (currentMode == mode.Moving) {
 
@@ -73,7 +84,7 @@ public class VirusMovement : MonoBehaviour {
 				SetTarget(GameManager.instance.nucleus);
 			}
 		} else if (currentMode == mode.Fighting) {
-		
+			
 		} else if (currentMode == mode.NucleusAttack) {
 //			Debug.Log (nav.remainingDistance);
 			if (nav.remainingDistance < 0.1f) {
@@ -98,10 +109,19 @@ public class VirusMovement : MonoBehaviour {
 			if (currentMode == mode.NucleusAttack) {
 				GameManager.instance.NucleusTakeDamage (attackDamage);
 			} else if (currentMode == mode.GateAttack) {
-				gameTarget.GetComponent<Gate>().TakeDamage (attackDamage);
+				gameTarget.GetComponent<Gate> ().TakeDamage (attackDamage);
+			} else if (currentMode == mode.Fighting) {
+				
 			}
 			timer = 0;
 		}
+	}
+
+	public bool IsDestroyed() {
+		if (health <= 0) {
+			return true;
+		}
+		return false;
 	}
 
     public bool TakeDamage(int amount)
