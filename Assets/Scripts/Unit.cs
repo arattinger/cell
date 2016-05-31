@@ -10,6 +10,7 @@ public class Unit : MonoBehaviour
     GameObject outline;
     float aggressionRange = 1f;
     GameObject attackTarget;
+	GameObject shot;
 
 	int health = 100;
     int attackDamage = 10;
@@ -67,7 +68,6 @@ public class Unit : MonoBehaviour
 			consumptionTimer = 0;
 		}
 
-
         foreach(GameObject virus in GameManager.instance.viruses)
         {
             //Debug.Log("Distance from virus:" + (virus.transform.position - transform.position).sqrMagnitude.ToString());
@@ -86,7 +86,9 @@ public class Unit : MonoBehaviour
 			timer += Time.deltaTime;
 			if(timer > attackFrequency && attackTarget)
             {	
-				attackTarget.GetComponent<VirusMovement> ().TakeDamage (attackDamage);
+//				Instantiate ();
+
+//				attackTarget.GetComponent<VirusMovement> ().TakeDamage (attackDamage);
                 // Virus has zero health, destroy it
 				if (attackTarget.GetComponent<VirusMovement> ().IsDestroyed ()) {
 					Destroy(attackTarget);
