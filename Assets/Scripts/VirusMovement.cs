@@ -5,6 +5,7 @@ public class VirusMovement : MonoBehaviour {
 
     Vector3 target;
     public GameObject gameTarget;
+	GameObject attackTarget;
     NavMeshAgent nav;
     int attackDamage = 10;
     int attackFrequency = 1;
@@ -44,22 +45,23 @@ public class VirusMovement : MonoBehaviour {
 			//Debug.Log("Distance from virus:" + (virus.transform.position - transform.position).sqrMagnitude.ToString());
 			if ((spaceship.transform.position - transform.position).sqrMagnitude < aggressionRange)
 			{
+				Debug.Log ("New mode is fighting");
 				currentMode = mode.Fighting;
-//				attackTarget = virus;
+				attackTarget = spaceship;
+		
 			}
 		}
 
 		if (currentMode == mode.Moving) {
 
 			// Check if the targetGate is still "alive", otherwise we target the nucleus
-			if (currentPhase == phases.Gate && gameTarget.GetComponent<Gate>().IsDestroyed()) {
+			if (currentPhase == phases.Gate && gameTarget.GetComponent<Gate> ().IsDestroyed ()) {
 				currentPhase = phases.Nucleus;
-				SetTarget(GameManager.instance.nucleus);
+				SetTarget (GameManager.instance.nucleus);
 			}
 
-			if (target != null)
-			{
-				nav.SetDestination(target);
+			if (target != null) {
+				nav.SetDestination (target);
 				// Debug.Log(nav.remainingDistance);
 				// Debug.Log(nav.pathStatus);
 				//Debug.Log(gameTarget.transform.position);
@@ -81,10 +83,13 @@ public class VirusMovement : MonoBehaviour {
 			if (gameTarget.GetComponent<Gate> ().IsDestroyed ()) {
 				currentMode = mode.Moving;
 				currentPhase = phases.Nucleus;
-				SetTarget(GameManager.instance.nucleus);
+				SetTarget (GameManager.instance.nucleus);
 			}
 		} else if (currentMode == mode.Fighting) {
-			
+			nav.Stop ();
+			if (attackTarget) {
+				Attack ();
+			}
 		} else if (currentMode == mode.NucleusAttack) {
 //			Debug.Log (nav.remainingDistance);
 			if (nav.remainingDistance < 0.1f) {
@@ -111,7 +116,15 @@ public class VirusMovement : MonoBehaviour {
 			} else if (currentMode == mode.GateAttack) {
 				gameTarget.GetComponent<Gate> ().TakeDamage (attackDamage);
 			} else if (currentMode == mode.Fighting) {
-				
+				attackTarget.GetComponent<Unit> ().TakeDamage (attackDamage);
+				if (attackTarget.GetComponent<Unit> ().IsDestroyed ()) {
+					GameManager.instance.spaceships.Remove (attackTarget);
+					MouseManager.instance.gol.units.Remove (attackTarget);
+					MouseManager.instance.selectedPlayers.Remove (attackTarget.GetComponent<Unit>());
+					Destroy (attackTarget);
+					currentMode = mode.Moving;
+					attackTarget = null;
+				}
 			}
 			timer = 0;
 		}

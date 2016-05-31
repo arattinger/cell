@@ -124,6 +124,11 @@ public class GameManager : MonoBehaviour {
         viruses.Add(newVirus);
     }
 
+	public void AddEnergy(int amount) {
+		energy += amount;
+		UpdateEnergyUI ();
+	}
+
     public bool GetEnergy(int amount)
     {
         if (amount > energy)

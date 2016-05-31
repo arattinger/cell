@@ -10,6 +10,19 @@ public class MouseManager : MonoBehaviour {
 
     bool isSelecting = false;
     Vector3 mousePosition1;
+	public static MouseManager instance = null;
+
+	void Awake() {
+		if (instance == null)
+		{
+			instance = this;
+		} else if (instance != this)
+		{
+			Destroy(gameObject);
+		}
+		DontDestroyOnLoad(gameObject);
+	}
+
 
     // Update is called once per frame
     void Update () {

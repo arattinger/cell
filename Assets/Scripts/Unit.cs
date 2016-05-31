@@ -11,6 +11,7 @@ public class Unit : MonoBehaviour
     float aggressionRange = 1f;
     GameObject attackTarget;
 
+	int health = 100;
     int attackDamage = 10;
     int attackFrequency = 1;
     float timer = 0f;
@@ -40,6 +41,17 @@ public class Unit : MonoBehaviour
         destination = new Vector3(dest.x, destination.y, dest.z);
         nav.SetDestination(destination);
     }
+
+	public void TakeDamage (int amount) {
+		health -= amount;
+	}
+
+	public bool IsDestroyed() {
+		if (health <= 0) {
+			return true;
+		}
+		return false;
+	}
 
     // Update is called once per frame
     void Update()
