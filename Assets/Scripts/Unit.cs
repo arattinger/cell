@@ -60,13 +60,17 @@ public class Unit : MonoBehaviour
         } else if(currentMode == mode.Attacking)
         {
 			timer += Time.deltaTime;
-			if(timer > attackFrequency && attackTarget && !attackTarget.GetComponent<VirusMovement>().TakeDamage(attackDamage))
-            {
+			if(timer > attackFrequency && attackTarget)
+            {	
+				attackTarget.GetComponent<VirusMovement> ().TakeDamage (attackDamage);
                 // Virus has zero health, destroy it
-                Destroy(attackTarget);
-                GameManager.instance.viruses.Remove(attackTarget);
-                attackTarget = null;
-
+				if (attackTarget.GetComponent<VirusMovement> ().IsDestroyed ()) {
+					Destroy(attackTarget);
+					GameManager.instance.viruses.Remove(attackTarget);
+					attackTarget = null;
+					currentMode = mode.Controlled;
+				}
+                
                 // Destroy the lysosome as well when the virus is defeated
                 // Destroy(gameObject);
 				timer = 0;

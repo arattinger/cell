@@ -126,6 +126,7 @@ public class VirusMovement : MonoBehaviour {
 
     public bool TakeDamage(int amount)
     {
+		//Debug.Log (health);
         health -= amount;
         if(health <= 0)
         {
