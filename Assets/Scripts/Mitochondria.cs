@@ -3,10 +3,11 @@ using System.Collections;
 
 public class Mitochondria : MonoBehaviour {
 
+	public int buildCost = 20;
 	int health = 100;
 	float timer = 0f;
-	float energyFrequency = 5f;
-	int productionAmount = 5;
+	float energyFrequency = 1f;
+	int productionAmount = 1;
 
 
 	// Use this for initialization
@@ -22,4 +23,7 @@ public class Mitochondria : MonoBehaviour {
 			timer = 0;
 		}
 	}
+
+
+	
 }

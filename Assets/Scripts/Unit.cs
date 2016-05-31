@@ -16,6 +16,10 @@ public class Unit : MonoBehaviour
     int attackFrequency = 1;
     float timer = 0f;
 
+	float energyTimer = 1.5f;
+	float consumptionTimer = 0f;
+	int consumption = 1;
+
     public enum mode { Controlled, Following, Attacking };
     mode currentMode = mode.Controlled;
 
@@ -56,6 +60,14 @@ public class Unit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		// Consume a bit of energy for operating the spaceship
+		consumptionTimer += Time.deltaTime;
+		if (consumptionTimer > energyTimer) {
+			GameManager.instance.GetEnergy (consumption);
+			consumptionTimer = 0;
+		}
+
+
         foreach(GameObject virus in GameManager.instance.viruses)
         {
             //Debug.Log("Distance from virus:" + (virus.transform.position - transform.position).sqrMagnitude.ToString());

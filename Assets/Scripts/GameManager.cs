@@ -126,7 +126,7 @@ public class GameManager : MonoBehaviour {
 
 	public void AddEnergy(int amount) {
 		energy += amount;
-		UpdateEnergyUI ();
+//		UpdateEnergyUI ();
 	}
 
     public bool GetEnergy(int amount)
@@ -135,9 +135,14 @@ public class GameManager : MonoBehaviour {
             return false;
 
         energy -= amount;
-        UpdateEnergyUI();
+//        UpdateEnergyUI();
         return true;
     }
+
+	void OnGUI() {
+		UpdateEnergyUI ();
+		UpdateHealthUI ();
+	}
 
     public void NucleusTakeDamage(int amount)
     {
