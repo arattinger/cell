@@ -39,7 +39,13 @@ public class GameManager : MonoBehaviour {
 	public List<GameObject> gates = new List<GameObject>();
 	public List<GameObject> leftGates = new List<GameObject>();
 	public List<GameObject> rightGates = new List<GameObject>();
+
 	public GameObject gameover;
+	private bool doingSetup = true;
+	public GameObject transition;
+	public GameObject explanation;
+
+
 
     void Awake() {
         if (instance == null)
@@ -50,6 +56,8 @@ public class GameManager : MonoBehaviour {
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+
+		InitGame ();
     }
 
     // Use this for initialization
@@ -73,11 +81,15 @@ public class GameManager : MonoBehaviour {
 		}
 
         //Debug.Log("No of healthbars" + healthBars.Count.ToString());
-        SpawnVirus();
+//        SpawnVirus();
     }
 
     // Update is called once per frame
     void Update () {
+
+		if (doingSetup)
+			return;
+
         timer += Time.deltaTime;
         if(timer > spawnTime)
         {
@@ -85,6 +97,43 @@ public class GameManager : MonoBehaviour {
             timer = 0;
         }
     }
+
+
+	void OnLevelWasLoaded(int index) {
+		level++;
+		InitGame ();
+	}
+
+	void InitGame() {
+		Debug.Log ("Init Game");
+
+//		GameObject transition = GameObject.Find ("GameTransition");
+
+
+
+		if (level == 1) {
+			Debug.Log ("Level 1 loaded");
+			transition.SetActive (true);
+
+			Invoke ("ExplanationPhase1", 2f);
+		}
+	}
+
+
+	void ExplanationPhase1() {
+		transition.SetActive (false);
+		explanation.SetActive (true);
+		Invoke ("StartGame", 5f);
+	}
+
+
+	void StartGame() {
+		transition.SetActive (false);
+		explanation.SetActive (false);
+
+
+		doingSetup = false;
+	}
 
     public void SpawnVirus()
     {
