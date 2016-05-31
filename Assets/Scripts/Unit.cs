@@ -8,9 +8,9 @@ public class Unit : MonoBehaviour
     NavMeshAgent nav;
     Transform target;
     GameObject outline;
-    float aggressionRange = 1f;
+    float aggressionRange = 2f;
     GameObject attackTarget;
-	GameObject shot;
+	public GameObject shot;
 
 	int health = 100;
     int attackDamage = 10;
@@ -86,7 +86,9 @@ public class Unit : MonoBehaviour
 			timer += Time.deltaTime;
 			if(timer > attackFrequency && attackTarget)
             {	
-//				Instantiate ();
+				GameObject shooting = (GameObject) Instantiate (shot, transform.position, transform.localRotation);
+				shooting.GetComponent<Shot> ().target = attackTarget.transform.position;
+				shooting.GetComponent<Shot> ().targetV = attackTarget;
 
 //				attackTarget.GetComponent<VirusMovement> ().TakeDamage (attackDamage);
                 // Virus has zero health, destroy it

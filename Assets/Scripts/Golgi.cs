@@ -9,6 +9,7 @@ public class Golgi : MonoBehaviour {
     public GameObject unit;
     public GameObject unitParent;
     int unitEnergyCost = 10;
+	public int buildCost = 50;
 
     void Awake()
     {

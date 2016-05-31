@@ -45,7 +45,7 @@ public class VirusMovement : MonoBehaviour {
 			//Debug.Log("Distance from virus:" + (virus.transform.position - transform.position).sqrMagnitude.ToString());
 			if ((spaceship.transform.position - transform.position).sqrMagnitude < aggressionRange)
 			{
-				Debug.Log ("New mode is fighting");
+//				Debug.Log ("New mode is fighting");
 				currentMode = mode.Fighting;
 				attackTarget = spaceship;
 		

@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour {
 	public List<GameObject> gates = new List<GameObject>();
 	public List<GameObject> leftGates = new List<GameObject>();
 	public List<GameObject> rightGates = new List<GameObject>();
+	public GameObject gameover;
 
     void Awake() {
         if (instance == null)
@@ -153,6 +154,9 @@ public class GameManager : MonoBehaviour {
     {
         health -= amount;
         UpdateHealthUI();
+		if(health <= 0) {
+			gameover.SetActive (true);
+		}
         Debug.Log("Nucleus taking damage");
     }
 

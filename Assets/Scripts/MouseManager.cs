@@ -7,6 +7,7 @@ public class MouseManager : MonoBehaviour {
     private Unit selectedPlayer;
     public List<Unit> selectedPlayers = new List<Unit>();
     public Golgi gol;
+	public GameObject golb;
 	public GameObject mito;
 	bool building = false;
 
@@ -41,11 +42,11 @@ public class MouseManager : MonoBehaviour {
 				RaycastHit hitInfo;
 				if (Physics.Raycast (ray, out hitInfo)) {
 					GameObject ourHitObject = hitInfo.collider.transform.gameObject;
-					if (ourHitObject.tag == "Cell") {
+					if (ourHitObject.tag == "Cell" || ourHitObject.tag == "Golgi") {
 						building = false;
 						currentBuilding = null;
 					} else {
-						Debug.Log ("Cant place the mito here");
+						Debug.Log ("Cant place the mito here " + ourHitObject.tag);
 					}
 				}
 
@@ -71,7 +72,9 @@ public class MouseManager : MonoBehaviour {
 	                    HitGolgi(ourHitObject, Input.mousePosition);
 					} else if(ourHitObject.tag == "MitoBuild") {
 						HitMito (ourHitObject, Input.mousePosition);
-					}
+					} else if(ourHitObject.tag == "GolgiBuild") {
+						HitGolgiBuild (ourHitObject, Input.mousePosition);
+					} 
 
 	            } else if (Input.GetMouseButtonDown(1))
 	            {
@@ -171,6 +174,18 @@ public class MouseManager : MonoBehaviour {
 			currentBuilding = ((GameObject)Instantiate (mito)).transform;
 			building = true;
 			Debug.Log ("Instantiate mito");
+		} else {
+			Debug.Log ("Not enough energy");
+		}
+
+	}
+
+	void HitGolgiBuild(GameObject hitObject, Vector3 pos) {
+
+		if (GameManager.instance.GetEnergy (golb.GetComponent<Golgi> ().buildCost)) {
+			currentBuilding = ((GameObject)Instantiate (golb)).transform;
+			building = true;
+			Debug.Log ("Instantiate golgi");
 		} else {
 			Debug.Log ("Not enough energy");
 		}
