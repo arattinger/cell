@@ -41,6 +41,8 @@ public class Golgi : MonoBehaviour {
             return;
         }
 
+		GetComponentInChildren<Animator> ().StartPlayback ();
+
         Debug.Log("Create Unit");
         
         GameObject newUnit = Instantiate(unit);

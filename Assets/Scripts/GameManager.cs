@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
 	private Text levelText;
 	private GameObject levelImage;
 	private int level = 1;
+	public GameObject golb;
 
     public int energy;
     int maxHealth = 100;
@@ -49,7 +50,8 @@ public class GameManager : MonoBehaviour {
 	public int fromStep = 0;
 	public int toStep = 2;
 	public int stepIndex = 0;
-
+	public SpriteRenderer gol1;
+	public SpriteRenderer gol2;
 
     void Awake() {
         if (instance == null)
@@ -102,7 +104,7 @@ public class GameManager : MonoBehaviour {
         timer += Time.deltaTime;
         if(timer > spawnTime)
         {
-			Debug.Log ("Spawn");
+//			Debug.Log ("Spawn");
             SpawnVirus();
             timer = 0;
         }
@@ -116,18 +118,18 @@ public class GameManager : MonoBehaviour {
 
 	void InitGame() {
 
-
-
 		Debug.Log ("Init Game");
 
 //		GameObject transition = GameObject.Find ("GameTransition");
-		if(level == -1) {
+		if (level == -1) {
 			doingSetup = false;
 		} else if (level == 1) {
 			Debug.Log ("Level 1 loaded");
 			transition.SetActive (true);
 
 			Invoke ("ExplanationPhase1", 2f);
+		} else if (level == 2) {
+			Debug.Log ("Level 2 loaded");
 		}
 	}
 
@@ -152,9 +154,89 @@ public class GameManager : MonoBehaviour {
 
 
 		} else {
+			steps [stepIndex].SetActive (false);
+			Invoke ("Level" + level + "Setup", 5f);
 			Invoke ("StartGame", 5f);
+//			Application.LoadLevel (Application.loadedLevel);
 		}
+	}
 
+	void Level1Setup() {
+		Debug.Log("Level 1 Setup");
+		golb.GetComponent<Golgi> ().CreateUnit (golb.transform.position);
+		golb.GetComponent<Golgi> ().CreateUnit (golb.transform.position);
+		Invoke ("Level1Over", 5f);
+	}
+
+	void Level2Setup() {
+		Debug.Log("Level 2 Setup");
+
+
+		AddEnergy (500);
+		maxViruses = 4;
+		golb.GetComponent<Golgi> ().CreateUnit (golb.transform.position);
+		golb.GetComponent<Golgi> ().CreateUnit (golb.transform.position);
+		golb.GetComponent<Golgi> ().CreateUnit (golb.transform.position);
+		golb.GetComponent<Golgi> ().CreateUnit (golb.transform.position);
+//		ShowStep ();
+		Invoke ("Level2Over", 5f);	
+	}
+
+	void Level3Setup() {
+		Debug.Log("Level 3 Setup");
+
+//		AddEnergy (500);
+		maxViruses = 500;
+		spawnTime = 5f;
+//		golb.GetComponentInChildren<SpriteRenderer> ().enabled = true;
+		gol1.enabled = true;		
+//		gol2.enabled = true;
+		gol2.GetComponent<Animator> ().Stop ();
+		ShowStep ();
+		Invoke ("Level3Over", 5f);	
+	}
+
+	void Level1Over() {
+		if (GameManager.instance.viruses.Count == 0 && doingSetup == false) {
+			// Start level 2
+			level += 1;
+			explanation.SetActive (true);
+			doingSetup = true;
+			fromStep = 3;
+			toStep = 3;
+			stepIndex = 3;
+
+			ShowStep ();
+//			Level2Setup();
+		} else {
+			Invoke ("Level1Over", 3f);
+		}
+	}
+
+	void Level2Over() {
+		if (GameManager.instance.viruses.Count == 0 && doingSetup == false) {
+			// Start level 2
+//			Level3Setup();
+			level += 1;
+			doingSetup = true;
+			fromStep = 4;
+			toStep = 4;
+			stepIndex = 4;
+			explanation.SetActive (true);
+
+			ShowStep();
+		} else {
+			Invoke ("Level2Over", 3f);
+		}
+	}
+
+	void Level3Over() {
+		if (GameManager.instance.viruses.Count == 0 && doingSetup == false) {
+			// Start level 2
+//			Level3Setup();
+		} else {
+//			Invoke ("Level3Over", 3f);
+		}
 	}
 
 	void StartGame() {

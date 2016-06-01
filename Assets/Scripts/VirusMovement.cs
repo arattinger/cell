@@ -12,6 +12,9 @@ public class VirusMovement : MonoBehaviour {
     float timer = 0f;
 	float aggressionRange = 1f;
 
+	public GameObject anim;
+	public GameObject still;
+
     int health = 100;
 
 	public enum mode { Moving, GateAttack, NucleusAttack, Fighting };
@@ -147,6 +150,8 @@ public class VirusMovement : MonoBehaviour {
         health -= amount;
         if(health <= 0)
         {
+			anim.SetActive(true);
+			still.SetActive(false);
             //Destroy(gameObject);
             return false;
         }
