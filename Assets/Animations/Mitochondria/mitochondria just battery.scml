@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r7">
+    <folder id="0">
+        <file id="0" name="batnoenergy.png" width="331" height="644" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="1" name="batempty.png" width="331" height="644" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="2" name="bat2.png" width="331" height="644" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="3" name="bat3.png" width="331" height="644" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="4" name="bat4.png" width="331" height="644" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="5" name="bat7.png" width="331" height="644" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="6" name="batgull.png" width="331" height="644" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="7" name="purple-lightning-bolt.png" width="165" height="300" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="8" name="lightning.png" width="570" height="640" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="9" name="lightning3.png" width="1920" height="1080" pivot_x="0" pivot_y="1"/>
+        <file id="10" name="ligning2.png" width="552" height="619" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="entity_000">
+        <animation id="0" name="NewAnimation" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                </key>
+                <key id="1" time="98">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                </key>
+                <key id="2" time="197">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                </key>
+                <key id="3" time="299">
+                    <object_ref id="0" timeline="0" key="3" z_index="0"/>
+                </key>
+                <key id="4" time="399">
+                    <object_ref id="0" timeline="0" key="4" z_index="0"/>
+                </key>
+                <key id="5" time="500">
+                    <object_ref id="0" timeline="0" key="5" z_index="0"/>
+                </key>
+                <key id="6" time="597">
+                    <object_ref id="0" timeline="0" key="6" z_index="0"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="batnoenergy">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="25" y="-34"/>
+                </key>
+                <key id="1" time="98" spin="0">
+                    <object folder="0" file="1" x="25" y="-34"/>
+                </key>
+                <key id="2" time="197" spin="0">
+                    <object folder="0" file="2" x="25" y="-34"/>
+                </key>
+                <key id="3" time="299" spin="0">
+                    <object folder="0" file="3" x="25" y="-34"/>
+                </key>
+                <key id="4" time="399" spin="0">
+                    <object folder="0" file="4" x="25" y="-34"/>
+                </key>
+                <key id="5" time="500" spin="0">
+                    <object folder="0" file="5" x="25" y="-34"/>
+                </key>
+                <key id="6" time="597" spin="0">
+                    <object folder="0" file="6" x="25" y="-34"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

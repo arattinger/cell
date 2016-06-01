@@ -31,6 +31,9 @@ public class MouseManager : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
+		if (GameManager.instance.doingSetup)
+			return;
+
 		if (building && currentBuilding != null) {
 			Vector3 m = Input.mousePosition;
 			m = new Vector3 (m.x, m.y, transform.position.y);

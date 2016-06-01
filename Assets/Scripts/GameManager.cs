@@ -41,10 +41,14 @@ public class GameManager : MonoBehaviour {
 	public List<GameObject> rightGates = new List<GameObject>();
 
 	public GameObject gameover;
-	private bool doingSetup = true;
+	public bool doingSetup = true;
 	public GameObject transition;
 	public GameObject explanation;
 
+	public List<GameObject> steps = new List<GameObject>();
+	public int fromStep = 0;
+	public int toStep = 2;
+	public int stepIndex = 0;
 
 
     void Awake() {
@@ -56,6 +60,10 @@ public class GameManager : MonoBehaviour {
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+
+		foreach (Transform child in explanation.transform) {
+			steps.Add (child.gameObject);
+		}
 
 		InitGame ();
     }
@@ -90,9 +98,11 @@ public class GameManager : MonoBehaviour {
 		if (doingSetup)
 			return;
 
+//		Debug.Log ("Update");
         timer += Time.deltaTime;
         if(timer > spawnTime)
         {
+			Debug.Log ("Spawn");
             SpawnVirus();
             timer = 0;
         }
@@ -105,13 +115,15 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void InitGame() {
+
+
+
 		Debug.Log ("Init Game");
 
 //		GameObject transition = GameObject.Find ("GameTransition");
-
-
-
-		if (level == 1) {
+		if(level == -1) {
+			doingSetup = false;
+		} else if (level == 1) {
 			Debug.Log ("Level 1 loaded");
 			transition.SetActive (true);
 
@@ -119,18 +131,35 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-
 	void ExplanationPhase1() {
 		transition.SetActive (false);
 		explanation.SetActive (true);
-		Invoke ("StartGame", 5f);
+
+
+		ShowStep ();
+//		Invoke ("ShowStep", 0f);
 	}
 
 
+	void ShowStep() {
+		if (stepIndex <= toStep) {
+			if (stepIndex != 0) {
+				steps [stepIndex - 1].SetActive (false);
+			}
+			steps [stepIndex].SetActive (true);
+			stepIndex += 1;
+			Invoke ("ShowStep", 3f);
+
+
+		} else {
+			Invoke ("StartGame", 5f);
+		}
+
+	}
+
 	void StartGame() {
 		transition.SetActive (false);
-		explanation.SetActive (false);
-
+		explanation.SetActive (false);	
 
 		doingSetup = false;
 	}
@@ -205,9 +234,14 @@ public class GameManager : MonoBehaviour {
         UpdateHealthUI();
 		if(health <= 0) {
 			gameover.SetActive (true);
+			Invoke ("RestartGame", 3f);
 		}
         Debug.Log("Nucleus taking damage");
     }
+
+	public void RestartGame() {
+		Application.LoadLevel ("mainmenu");
+	}
 
     void UpdateEnergyUI()
     {

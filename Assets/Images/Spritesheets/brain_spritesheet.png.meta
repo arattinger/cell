@@ -1,0 +1,258 @@
+fileFormatVersion: 2
+guid: b1816e8d136b8eb46ab8f7a6b16d5931
+timeCreated: 1464769999
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: brain_spritesheet_0
+    21300002: brain_spritesheet_1
+    21300004: brain_spritesheet_2
+    21300006: brain_spritesheet_3
+    21300008: brain_spritesheet_4
+    21300010: brain_spritesheet_5
+    21300012: brain_spritesheet_6
+    21300014: brain_spritesheet_7
+    21300016: brain_spritesheet_8
+    21300018: brain_spritesheet_9
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: brain_spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1503
+        width: 161
+        height: 167
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 34, y: -10}
+        - {x: 19, y: -13}
+        - {x: 5, y: -44}
+        - {x: 5, y: -119}
+        - {x: 31, y: -158}
+        - {x: 112, y: -158}
+        - {x: 148, y: -129}
+        - {x: 148, y: -46}
+        - {x: 115, y: -10}
+    - name: brain_spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1336
+        width: 161
+        height: 167
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 38, y: -5}
+        - {x: 6, y: -45}
+        - {x: 6, y: -143}
+        - {x: 33, y: -153}
+        - {x: 136, y: -153}
+        - {x: 149, y: -139}
+        - {x: 149, y: -17}
+        - {x: 148, y: -5}
+    - name: brain_spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1169
+        width: 161
+        height: 167
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 119, y: -13}
+        - {x: 34, y: -13}
+        - {x: 7, y: -35}
+        - {x: 7, y: -144}
+        - {x: 33, y: -161}
+        - {x: 111, y: -161}
+        - {x: 150, y: -141}
+        - {x: 150, y: -56}
+        - {x: 126, y: -14}
+    - name: brain_spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1002
+        width: 161
+        height: 167
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 8, y: -13}
+        - {x: 0, y: -41}
+        - {x: 0, y: -161}
+        - {x: 131, y: -161}
+        - {x: 143, y: -134}
+        - {x: 143, y: -31}
+        - {x: 126, y: -13}
+    - name: brain_spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 835
+        width: 161
+        height: 167
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 21, y: -12}
+        - {x: 5, y: -21}
+        - {x: 5, y: -125}
+        - {x: 26, y: -160}
+        - {x: 126, y: -160}
+        - {x: 148, y: -142}
+        - {x: 148, y: -38}
+        - {x: 138, y: -12}
+    - name: brain_spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 668
+        width: 161
+        height: 167
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 48, y: -9}
+        - {x: 15, y: -15}
+        - {x: 5, y: -50}
+        - {x: 5, y: -122}
+        - {x: 41, y: -157}
+        - {x: 105, y: -157}
+        - {x: 148, y: -130}
+        - {x: 148, y: -26}
+        - {x: 119, y: -9}
+    - name: brain_spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 503
+        width: 161
+        height: 167
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 10, y: -23}
+        - {x: 0, y: -59}
+        - {x: 0, y: -143}
+        - {x: 24, y: -167}
+        - {x: 123, y: -167}
+        - {x: 140, y: -155}
+        - {x: 140, y: -50}
+        - {x: 127, y: -23}
+    - name: brain_spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 334
+        width: 161
+        height: 167
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 27, y: -18}
+        - {x: 9, y: -22}
+        - {x: 9, y: -160}
+        - {x: 29, y: -166}
+        - {x: 138, y: -166}
+        - {x: 152, y: -147}
+        - {x: 152, y: -18}
+    - name: brain_spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 167
+        width: 161
+        height: 167
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 33, y: -15}
+        - {x: 20, y: -61}
+        - {x: 20, y: -156}
+        - {x: 26, y: -163}
+        - {x: 145, y: -163}
+        - {x: 161, y: -158}
+        - {x: 161, y: -32}
+        - {x: 135, y: -15}
+    - name: brain_spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 161
+        height: 167
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 14, y: 0}
+        - {x: 11, y: -14}
+        - {x: 11, y: -145}
+        - {x: 12, y: -146}
+        - {x: 132, y: -146}
+        - {x: 154, y: -141}
+        - {x: 154, y: -10}
+        - {x: 135, y: 0}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

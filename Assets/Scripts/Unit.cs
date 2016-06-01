@@ -61,6 +61,9 @@ public class Unit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		if (GameManager.instance.doingSetup)
+			return;
+		
 		// Consume a bit of energy for operating the spaceship
 		consumptionTimer += Time.deltaTime;
 		if (consumptionTimer > energyTimer) {

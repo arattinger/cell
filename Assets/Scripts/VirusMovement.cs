@@ -40,6 +40,9 @@ public class VirusMovement : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
+		if (GameManager.instance.doingSetup)
+			return;
+
 		foreach(GameObject spaceship in GameManager.instance.spaceships)
 		{
 			//Debug.Log("Distance from virus:" + (virus.transform.position - transform.position).sqrMagnitude.ToString());
